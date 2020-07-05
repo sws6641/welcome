@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.pro.dao.MemberDAO">
+	
+	<!-- 회원가입하기  -->
+	<insert id="signUpMember" >
+		INSERT INTO MEMBER
+		VALUES (MEMBER_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, SYSDATE, 'BRONZE', 0, 1)
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="selectBymIdmPw" resultType="com.koreait.pro.dto.MemberDTO">
+		SELECT * FROM MEMBER WHERE M_ID = #{param1} AND M_PW = #{param2} 
+	</select>
+	
+	<!-- 회원 목록 전체 가져오기 -->
+	<select id="selectMemberList"  resultType="com.koreait.pro.dto.MemberDTO">
+		SELECT *
+		FROM MEMBER WHERE M_STATE = 1 ORDER BY M_NO DESC
+	</select>
+	
+</mapper>
